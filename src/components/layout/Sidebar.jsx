@@ -10,15 +10,16 @@ import {
   LifeBuoy,
   Inbox,
   Gift,
+  Info,
 } from "lucide-react";
 import { cn } from "@/utils/cn";
 
 const navItems = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/" },
-  { icon: Phone, label: "Call Insights", href: "/call-insights" },
-  { icon: FileText, label: "Knowledge Base", href: "/knowledge-base" },
-  { icon: MessageSquare, label: "Prompts", href: "/prompts" },
-  { icon: LifeBuoy, label: "Boxy Controls", href: "/boxy-controlls" },
+  { icon: LayoutDashboard, label: "Dashboard", href: "/", info: false },
+  { icon: Phone, label: "Call Insights", href: "/call-insights", info: false },
+  { icon: FileText, label: "Knowledge Base", href: "/knowledge-base", info: true },
+  { icon: MessageSquare, label: "Prompts", href: "/prompts", info: true },
+  { icon: LifeBuoy, label: "Boxy Controls", href: "/boxy-controlls", info: true },
 ];
 
 const bottomItems = [
@@ -41,13 +42,15 @@ export function Sidebar({ className }) {
         className
       )}
     >
+      {/* Logo */}
       <div className="p-6 flex items-center gap-3">
         <span className="text-xl font-semibold tracking-tight text-[var(--foreground)]">
           Hintro
         </span>
       </div>
 
-      <nav className="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+      {/* Main Nav */}
+      <nav className="flex-1 px-4 py-2 space-y-0.5 overflow-y-auto">
         {navItems.map((item) => {
           const active = isActive(item.href);
           return (
@@ -57,25 +60,36 @@ export function Sidebar({ className }) {
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group",
                 active
-                  ? "bg-[var(--primary)] text-[var(--primary-foreground)] shadow-md"
-                  : "text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]"
+                  ? "bg-[var(--accent)] text-[var(--primary)]"
+                  : "text-[var(--foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]"
               )}
             >
               <item.icon
                 className={cn(
-                  "w-5 h-5 transition-colors",
+                  "w-5 h-5 flex-shrink-0 transition-colors",
                   active
-                    ? "text-[var(--primary-foreground)]"
-                    : "text-[var(--muted-foreground)] group-hover:text-[var(--primary)]"
+                    ? "text-[var(--primary)]"
+                    : "text-[var(--foreground)] group-hover:text-[var(--foreground)]"
                 )}
               />
-              {item.label}
+              <span className="flex-1">{item.label}</span>
+              {item.info && (
+                <Info
+                  className={cn(
+                    "w-4 h-4 flex-shrink-0 transition-colors",
+                    active
+                      ? "text-[var(--primary)]"
+                      : "text-[var(--muted-foreground)]"
+                  )}
+                />
+              )}
             </Link>
           );
         })}
       </nav>
 
-      <div className="p-4 border-t border-[var(--border)] space-y-1">
+      {/* Bottom Section */}
+      <div className="px-4 py-4 border-t border-[var(--border)] space-y-0.5">
         {bottomItems.map((item) => {
           const active = isActive(item.href);
           return (
@@ -83,24 +97,31 @@ export function Sidebar({ className }) {
               key={item.label}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all group",
+                "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group",
                 active
-                  ? "bg-[var(--primary)] text-[var(--primary-foreground)] shadow-md"
-                  : "text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]"
+                  ? "bg-[var(--accent)] text-[var(--primary)]"
+                  : "text-[var(--foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]"
               )}
             >
               <item.icon
                 className={cn(
-                  "w-5 h-5 transition-colors",
+                  "w-5 h-5 flex-shrink-0 transition-colors",
                   active
-                    ? "text-[var(--primary-foreground)]"
-                    : "text-[var(--muted-foreground)] group-hover:text-[var(--foreground)]"
+                    ? "text-[var(--primary)]"
+                    : "text-[var(--foreground)] group-hover:text-[var(--foreground)]"
                 )}
               />
               {item.label}
             </Link>
           );
         })}
+
+        {/* Upgrade Button */}
+        <div className="pt-3">
+          <button className="w-full rounded-lg bg-[var(--secondary-foreground)] text-white text-sm font-medium py-2.5 hover:opacity-80 transition-opacity">
+            Upgrade
+          </button>
+        </div>
       </div>
     </aside>
   );

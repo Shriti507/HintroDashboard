@@ -4,13 +4,6 @@ import { useEffect, useState, useCallback } from "react";
 import { useUser } from "@/context/UserContext";
 import { fetchProfile } from "@/services/api";
 
-function getGreeting() {
-  const hour = new Date().getHours();
-  if (hour < 12) return "Good morning";
-  if (hour < 17) return "Good afternoon";
-  return "Good evening";
-}
-
 export function WelcomeCard() {
   const { userId } = useUser();
   const [profile, setProfile] = useState(null);
@@ -32,10 +25,6 @@ export function WelcomeCard() {
     loadProfile();
   }, [loadProfile]);
 
-  const displayName = profile?.firstName
-    ? `${profile.firstName} ${profile.lastName ?? ""}`.trim()
-    : null;
-
   return (
     <div>
       {isLoading ? (
@@ -43,10 +32,10 @@ export function WelcomeCard() {
       ) : (
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)]">
-            {displayName ? `${getGreeting()}, ${profile.firstName}!` : "Dashboard Overview"}
+            Hi, {profile?.firstName ?? "there"} 👋 Welcome to Hintro
           </h1>
           <p className="text-[var(--muted-foreground)] mt-1">
-            Welcome back! Here&apos;s what&apos;s happening today.
+            Ready to make your next call smarter ?
           </p>
         </div>
       )}
