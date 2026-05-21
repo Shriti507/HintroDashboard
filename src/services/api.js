@@ -1,71 +1,35 @@
-// Mock API Service
+// Real Mock API Service
+// Base URL: https://mock-backend-hintro.vercel.app
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const BASE_URL = "https://mock-backend-hintro.vercel.app";
 
-export const fetchDashboardStats = async (userId) => {
-  await delay(600); 
+async function apiFetch(path, userId) {
+  const response = await fetch(`${BASE_URL}${path}`, {
+    headers: {
+      "x-user-id": userId,
+      "Content-Type": "application/json",
+    },
+  });
 
-  if (userId === "user1") {
-    return {
-      totalCalls: 0,
-      totalMinutes: 0,
-      successRate: 0,
-      activeContacts: 0,
-    };
+  if (!response.ok) {
+    throw new Error(`API error ${response.status}: ${response.statusText}`);
   }
 
-  
-  return {
-    totalCalls: 1248,
-    totalMinutes: 3450,
-    successRate: 84.5,
-    activeContacts: 342,
-  };
-};
+  return response.json();
+}
 
-export const fetchRecentCalls = async (userId) => {
-  await delay(800);
+export async function fetchProfile(userId) {
+  return apiFetch("/api/auth/profile", userId);
+}
 
-  if (userId === "user1") {
-    return [];
-  }
+export async function fetchDashboard(userId) {
+  return apiFetch("/api/auth/dashboard", userId);
+}
 
-  return [
-    {
-      id: "call-1",
-      contactName: "Alice Johnson",
-      contactAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alice",
-      duration: 345,
-      status: "completed",
-      date: new Date(Date.now() - 1000 * 60 * 30).toISOString(), 
-      sentiment: "positive",
-    },
-    {
-      id: "call-2",
-      contactName: "Bob Smith",
-      contactAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Bob",
-      duration: 120,
-      status: "missed",
-      date: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), 
-      sentiment: "neutral",
-    },
-    {
-      id: "call-3",
-      contactName: "Charlie Davis",
-      contactAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Charlie",
-      duration: 890,
-      status: "completed",
-      date: new Date(Date.now() - 1000 * 60 * 60 * 5).toISOString(), 
-      sentiment: "positive",
-    },
-    {
-      id: "call-4",
-      contactName: "Diana Prince",
-      contactAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Diana",
-      duration: 45,
-      status: "voicemail",
-      date: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), 
-      sentiment: "negative",
-    },
-  ];
-};
+export async function fetchStats(userId) {
+  return apiFetch("/api/call-sessions/stats", userId);
+}
+
+export async function fetchCallSessions(userId, limit = 10) {
+  return apiFetch(`/api/call-sessions?limit=${limit}`, userId);
+}

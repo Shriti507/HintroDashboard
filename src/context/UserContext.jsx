@@ -5,11 +5,11 @@ import { createContext, useContext, useState } from "react";
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
- 
-  const [activeUser, setActiveUser] = useState("user2"); 
+  // userId is the API user identifier: "u1" (empty) or "u2" (filled)
+  const [userId, setUserId] = useState("u2");
 
   return (
-    <UserContext.Provider value={{ activeUser, setActiveUser }}>
+    <UserContext.Provider value={{ userId, setUserId }}>
       {children}
     </UserContext.Provider>
   );
