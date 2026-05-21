@@ -2,30 +2,27 @@
 
 import { cn } from "@/utils/cn";
 
-export function StatsCard({ title, formattedValue, icon: Icon }) {
+export function StatsCard({ title, formattedValue, icon: Icon, iconBg, iconColor }) {
   const isEmpty = !formattedValue || formattedValue === "0" || formattedValue === "-";
 
   return (
-    <div className="rounded-xl bg-[var(--card)] border border-[var(--border)] p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
-      {/* Decorative glow */}
-      <div className="absolute -right-6 -top-6 w-24 h-24 bg-[var(--primary)]/5 rounded-full blur-2xl group-hover:bg-[var(--primary)]/10 transition-colors pointer-events-none" />
-
-      <div className="flex items-center justify-between mb-4 relative z-10">
-        <h3 className="text-sm font-medium text-[var(--muted-foreground)] tracking-tight">
-          {title}
-        </h3>
-        <div className="w-10 h-10 rounded-lg bg-[var(--muted)] flex items-center justify-center text-[var(--foreground)] group-hover:text-[var(--primary)] group-hover:scale-110 transition-all">
-          <Icon className="w-5 h-5" />
-        </div>
+    <div className="flex items-center gap-4 rounded-2xl bg-white border border-[var(--border)] p-5 shadow-sm hover:shadow-md transition-all duration-200 group">
+     
+      <div className={cn(
+        "w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110",
+        iconBg || "bg-[var(--muted)]"
+      )}>
+        <Icon className={cn("w-5 h-5", iconColor || "text-[var(--foreground)]")} />
       </div>
 
-      <div className="relative z-10">
+      <div className="flex flex-col min-w-0">
+        <span className="text-sm font-medium text-[var(--muted-foreground)] tracking-tight leading-none">
+          {title}
+        </span>
         <span
           className={cn(
-            "text-3xl font-bold tracking-tight",
-            isEmpty
-              ? "text-[var(--muted-foreground)]"
-              : "text-[var(--foreground)]"
+            "text-xl sm:text-[22px] font-bold tracking-tight mt-2 text-[var(--foreground)] leading-none",
+            isEmpty && "text-[var(--muted-foreground)]"
           )}
         >
           {formattedValue || "0"}

@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
-import { PhoneCall, Clock, Cpu, Calendar, AlertCircle, RefreshCw } from "lucide-react";
+import { PieChart, Clock, Sparkles, Calendar, AlertCircle, RefreshCw } from "lucide-react";
 import { StatsCard } from "./StatsCard";
 import { useUser } from "@/context/UserContext";
 import { fetchStats } from "@/services/api";
-import { formatDuration, formatLastSession } from "@/utils/formatters";
+import { formatLastSession } from "@/utils/formatters";
 
 export function DashboardCardsContainer() {
   const { userId } = useUser();
@@ -70,41 +70,61 @@ export function DashboardCardsContainer() {
     );
   }
 
+  const formatAvgDuration = (seconds) => {
+    if (seconds === 0) return "0s";
+    if (!seconds) return "-";
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    if (mins === 0) return `${secs}sec`;
+    if (secs === 0) return `${mins}m`;
+    return `${mins}m ${secs}sec`;
+  };
+
   const cards = [
     {
       title: "Total Sessions",
       value: stats?.totalSessions ?? 0,
-      icon: PhoneCall,
+      icon: PieChart,
+      iconBg: "bg-[#fee2e2]",
+      iconColor: "text-[#ef4444]",
       formatted: String(stats?.totalSessions ?? 0),
     },
     {
       title: "Average Duration",
       value: stats?.averageDuration ?? 0,
       icon: Clock,
-      formatted: formatDuration(stats?.averageDuration ?? 0),
+      iconBg: "bg-[#e0f2fe]",
+      iconColor: "text-[#0284c7]",
+      formatted: formatAvgDuration(stats?.averageDuration ?? 0),
     },
     {
       title: "AI Used",
       value: stats?.totalAIInteractions ?? 0,
-      icon: Cpu,
-      formatted: String(stats?.totalAIInteractions ?? 0),
+      icon: Sparkles,
+      iconBg: "bg-[#d1fae5]",
+      iconColor: "text-[#10b981]",
+      formatted: `${stats?.totalAIInteractions ?? 0} times`,
     },
     {
       title: "Last Session",
       value: stats?.lastSession,
       icon: Calendar,
+      iconBg: "bg-[#ede9fe]",
+      iconColor: "text-[#8b5cf6]",
       formatted: formatLastSession(stats?.lastSession),
     },
   ];
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {cards.map((card) => (
         <StatsCard
           key={card.title}
           title={card.title}
           formattedValue={card.formatted}
           icon={card.icon}
+          iconBg={card.iconBg}
+          iconColor={card.iconColor}
         />
       ))}
     </div>

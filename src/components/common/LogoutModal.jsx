@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { cn } from "@/utils/cn";
+import { X } from "lucide-react";
 
 export function LogoutModal({ isOpen, onClose, onConfirm }) {
   const cancelRef = useRef(null);
 
-  // Close on ESC
   useEffect(() => {
     if (!isOpen) return;
     function handleKey(e) {
@@ -16,7 +15,6 @@ export function LogoutModal({ isOpen, onClose, onConfirm }) {
     return () => document.removeEventListener("keydown", handleKey);
   }, [isOpen, onClose]);
 
-  // Focus trap: focus Cancel button when modal opens
   useEffect(() => {
     if (isOpen && cancelRef.current) {
       cancelRef.current.focus();
@@ -29,7 +27,7 @@ export function LogoutModal({ isOpen, onClose, onConfirm }) {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm animate-in fade-in duration-150"
+        className="fixed inset-0 z-50 bg-black/30 animate-in fade-in duration-150"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -40,36 +38,60 @@ export function LogoutModal({ isOpen, onClose, onConfirm }) {
         aria-modal="true"
         aria-labelledby="logout-title"
         aria-describedby="logout-desc"
-        className="fixed z-50 inset-0 flex items-center justify-center p-4"
+        className="fixed z-50 inset-0 flex items-center justify-center p-6"
+        onClick={onClose}
       >
         <div
-          className="bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-in fade-in zoom-in-95 duration-200"
+          className="bg-white rounded-2xl shadow-2xl w-full max-w-md animate-in fade-in zoom-in-95 duration-200 overflow-hidden relative"
           onClick={(e) => e.stopPropagation()}
         >
-          <h2
-            id="logout-title"
-            className="text-lg font-semibold text-[var(--foreground)] mb-2"
+          {/* Close (X) button */}
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            className="absolute top-4 right-4 p-1.5 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
           >
-            Leaving already?
-          </h2>
-          <p
-            id="logout-desc"
-            className="text-sm text-[var(--muted-foreground)] mb-6"
-          >
-            You can log back in anytime to continue your meetings with Hintro.
-          </p>
+            <X className="w-5 h-5" />
+          </button>
 
-          <div className="flex gap-3">
+          {/* Title */}
+          <div className="px-8 pt-8 pb-5">
+            <h2
+              id="logout-title"
+              className="text-2xl font-bold text-gray-900"
+            >
+              Leaving already?
+            </h2>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px bg-gray-200" />
+
+          {/* Description */}
+          <div className="px-8 py-7">
+            <p
+              id="logout-desc"
+              className="text-sm text-gray-600 leading-relaxed"
+            >
+              You can log back in anytime to continue your meetings with Hintro.
+            </p>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px bg-gray-200" />
+
+          {/* Buttons */}
+          <div className="px-8 py-6 flex items-center gap-4">
             <button
               ref={cancelRef}
               onClick={onClose}
-              className="flex-1 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] text-sm font-medium py-2.5 hover:bg-[var(--muted)] transition-colors"
+              className="rounded-lg border border-gray-300 bg-white text-gray-800 text-sm font-medium px-6 py-2.5 hover:bg-gray-50 transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={onConfirm}
-              className="flex-1 rounded-lg bg-red-600 text-white text-sm font-medium py-2.5 hover:bg-red-700 transition-colors"
+              className="flex-1 rounded-lg bg-black text-white text-sm font-semibold py-2.5 hover:bg-gray-900 transition-colors"
             >
               Log out
             </button>

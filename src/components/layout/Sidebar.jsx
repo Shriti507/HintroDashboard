@@ -42,7 +42,7 @@ export function Sidebar({ className }) {
         className
       )}
     >
-      {/* Logo */}
+   
       <div className="p-6 flex items-center gap-3">
         <span className="text-xl font-semibold tracking-tight text-[var(--foreground)]">
           Hintro
@@ -116,7 +116,7 @@ export function Sidebar({ className }) {
           );
         })}
 
-        {/* Upgrade Button */}
+     
         <div className="pt-3">
           <button className="w-full rounded-lg bg-[var(--secondary-foreground)] text-white text-sm font-medium py-2.5 hover:opacity-80 transition-opacity">
             Upgrade

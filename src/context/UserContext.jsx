@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  // userId is the API user identifier: "u1" (empty) or "u2" (filled)
+  
   const [userId, setUserId] = useState("u2");
 
   return (

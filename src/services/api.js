@@ -1,5 +1,3 @@
-// Real Mock API Service
-// Base URL: https://mock-backend-hintro.vercel.app
 
 const BASE_URL = "https://mock-backend-hintro.vercel.app";
 

@@ -20,7 +20,7 @@ export function Navbar({ onMenuClick }) {
   const avatarRef = useRef(null);
   const userSwitcherRef = useRef(null);
 
-  // Close dropdowns on outside click
+
   useEffect(() => {
     function handleClick(e) {
       if (avatarRef.current && !avatarRef.current.contains(e.target)) {
@@ -40,7 +40,6 @@ export function Navbar({ onMenuClick }) {
   }
 
   function handleLogoutConfirm() {
-    // In a real app: clear session/tokens and redirect to login
     setLogoutModalOpen(false);
     alert("Logged out! (redirect to login in production)");
   }
@@ -107,13 +106,13 @@ export function Navbar({ onMenuClick }) {
             )}
           </div>
 
-          {/* ── Watch Tutorial Button ── */}
+     
           <button className="hidden sm:flex h-[36px] items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--background)] text-[var(--foreground)] px-3 hover:bg-[var(--muted)] transition-colors">
             <Play size={12} fill="currentColor" className="text-[var(--foreground)]" />
             <span className="text-sm font-medium">Watch Tutorial</span>
           </button>
 
-          {/* ── Avatar + Dropdown ── */}
+       
           <div className="relative" ref={avatarRef}>
             <button
               onClick={() => setAvatarMenuOpen((v) => !v)}
@@ -146,7 +145,7 @@ export function Navbar({ onMenuClick }) {
         </div>
       </header>
 
-      {/* Logout confirmation modal */}
+   
       <LogoutModal
         isOpen={logoutModalOpen}
         onClose={() => setLogoutModalOpen(false)}
