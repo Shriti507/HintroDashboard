@@ -42,14 +42,14 @@ export function Sidebar({ className }) {
         className
       )}
     >
-   
+
       <div className="p-6 flex items-center gap-3">
         <span className="text-xl font-semibold tracking-tight text-[var(--foreground)]">
           Hintro
         </span>
       </div>
 
-      {/* Main Nav */}
+     
       <nav className="flex-1 px-4 py-2 space-y-0.5 overflow-y-auto">
         {navItems.map((item) => {
           const active = isActive(item.href);
@@ -88,7 +88,7 @@ export function Sidebar({ className }) {
         })}
       </nav>
 
-      {/* Bottom Section */}
+    
       <div className="px-4 py-4 border-t border-[var(--border)] space-y-0.5">
         {bottomItems.map((item) => {
           const active = isActive(item.href);
@@ -116,7 +116,7 @@ export function Sidebar({ className }) {
           );
         })}
 
-     
+
         <div className="pt-3">
           <button className="w-full rounded-lg bg-[var(--secondary-foreground)] text-white text-sm font-medium py-2.5 hover:opacity-80 transition-opacity">
             Upgrade

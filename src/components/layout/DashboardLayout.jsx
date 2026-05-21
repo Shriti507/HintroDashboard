@@ -1,12 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sidebar } from "./Sidebar";
 import { Navbar } from "./Navbar";
 import { cn } from "@/utils/cn";
 
 export function DashboardLayout({ children }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") setIsMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, []);
 
   return (
     <div className="flex h-screen overflow-hidden bg-[var(--background)]">
@@ -29,7 +37,7 @@ export function DashboardLayout({ children }) {
         <Sidebar className="flex w-64 shadow-2xl" />
       </div>
 
-      {/* Main Content */}
+      
       <div className="flex-1 flex flex-col w-0 overflow-hidden relative">
         <Navbar onMenuClick={() => setIsMobileMenuOpen(true)} />
         

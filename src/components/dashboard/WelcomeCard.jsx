@@ -26,7 +26,7 @@ export function WelcomeCard() {
   }, [loadProfile]);
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-4">
       {isLoading ? (
         <div className="h-14 w-64 rounded-lg bg-[var(--muted)]/50 animate-pulse" />
       ) : (

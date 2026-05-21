@@ -49,12 +49,12 @@ export function Navbar({ onMenuClick }) {
 
   return (
     <>
-      <header className="h-16 border-b border-[var(--border)] bg-[var(--card)]/80 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6">
-        <div className="flex items-center gap-4">
+      <header className="h-16 border-b border-[var(--border)] bg-[var(--card)]/80 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 relative">
+        <div className="flex items-center gap-4 z-10">
           <button
             onClick={onMenuClick}
             aria-label="Open navigation menu"
-            className="md:hidden p-2 rounded-md text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+            className="md:hidden p-2 -ml-2 rounded-md text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
           >
             <Menu className="w-5 h-5" />
           </button>
@@ -64,8 +64,13 @@ export function Navbar({ onMenuClick }) {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          {/* ── Dev User Switcher ── */}
+       
+        <div className="absolute left-1/2 -translate-x-1/2 sm:hidden font-medium font-sans text-lg text-[var(--foreground)] pointer-events-none">
+          <p>Dashboard</p>
+        </div>
+
+        <div className="flex items-center gap-3 z-10">
+       
           <div className="relative" ref={userSwitcherRef}>
             <button
               onClick={() => setUserSwitcherOpen((v) => !v)}
