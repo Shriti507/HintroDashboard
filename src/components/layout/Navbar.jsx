@@ -6,9 +6,10 @@ import { useUser } from "@/context/UserContext";
 import { LogoutModal } from "@/components/common/LogoutModal";
 import { cn } from "@/utils/cn";
 
+// This selector exists only to demonstrate the assignment requirement for both empty-state and populated-state users.
 const USER_OPTIONS = [
-  { id: "u1", label: "User 1", sublabel: "Empty State" },
-  { id: "u2", label: "User 2", sublabel: "Filled State" },
+  { id: "u1", label: "Empty State" },
+  { id: "u2", label: "Active User" },
 ];
 
 export function Navbar({ onMenuClick }) {
@@ -78,7 +79,7 @@ export function Navbar({ onMenuClick }) {
               aria-label="Switch user"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
-              {currentUser.label}
+              Demo User
               <ChevronDown className={cn("w-3 h-3 transition-transform", userSwitcherOpen && "rotate-180")} />
             </button>
 
@@ -100,7 +101,6 @@ export function Navbar({ onMenuClick }) {
                   >
                     <div className="text-left">
                       <p className="font-medium">{user.label}</p>
-                      <p className="text-xs text-[var(--muted-foreground)]">{user.sublabel}</p>
                     </div>
                     {userId === user.id && (
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary)]" />

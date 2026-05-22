@@ -81,17 +81,17 @@ export function LogoutModal({ isOpen, onClose, onConfirm }) {
           <div className="h-px bg-gray-200" />
 
           {/* Buttons */}
-          <div className="px-8 py-6 flex items-center gap-4">
+          <div className="px-8 py-6 flex items-center justify-between">
             <button
               ref={cancelRef}
               onClick={onClose}
-              className="rounded-lg border border-gray-300 bg-white text-gray-800 text-sm font-medium px-6 py-2.5 hover:bg-gray-50 transition-colors"
+              className="rounded-lg border border-gray-300 bg-white text-gray-800 text-sm font-medium px-8 py-2.5 hover:bg-gray-50 transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={onConfirm}
-              className="flex-1 rounded-lg bg-black text-white text-sm font-semibold py-2.5 hover:bg-gray-900 transition-colors"
+              className="rounded-lg bg-black text-white text-sm font-semibold px-12 py-2.5 hover:bg-gray-900 transition-colors"
             >
               Log out
             </button>

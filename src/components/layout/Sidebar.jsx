@@ -32,7 +32,7 @@ export function Sidebar({ className }) {
 
   function isActive(href) {
     if (href === "/") return pathname === "/";
-    return pathname.startsWith(href);
+    return pathname === href || pathname.startsWith(`${href}/`);
   }
 
   return (
@@ -122,7 +122,7 @@ export function Sidebar({ className }) {
             Upgrade
           </button>
         </div>
-      </div>
+      </div>``
     </aside>
   );
 }

@@ -39,7 +39,7 @@ export function WelcomeCard() {
           </p>
         </div>
       )}
-      <button className="inline-flex items-center justify-center px-5 py-2.5 bg-black hover:bg-neutral-900 text-white text-sm font-semibold rounded-lg shadow-sm transition-all duration-200 cursor-pointer active:scale-95">
+      <button className="inline-flex items-center justify-center px-5 py-2.5 bg-black hover:bg-neutral-900 text-white text-sm font-semibold rounded shadow-sm transition-all duration-200 cursor-pointer active:scale-95">
         Start New Call
       </button>
     </div>
