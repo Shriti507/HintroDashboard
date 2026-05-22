@@ -5,7 +5,7 @@ This project is a modern, responsive frontend application for the Hintro Dashboa
 ## Links
 
 - **Live Demo:** https://hintro-dashboard-two.vercel.app/
-- **Video Walkthrough:** 
+- **Video Walkthrough:** https://drive.google.com/file/d/1Km9pywyfwDtct_Gelr-dh4NfJNg-oWoN/view?usp=sharing
 
 ## Setup Instructions
 
