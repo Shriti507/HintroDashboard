@@ -122,7 +122,7 @@ export function Sidebar({ className }) {
             Upgrade
           </button>
         </div>
-      </div>``
+      </div>
     </aside>
   );
 }

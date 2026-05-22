@@ -2,6 +2,11 @@
 
 This project is a modern, responsive frontend application for the Hintro Dashboard. It features a scalable UI, data visualization, and consumes a mock backend API to demonstrate both empty and populated data states.
 
+## Links
+
+- **Live Demo:** https://hintro-dashboard-two.vercel.app/
+- **Video Walkthrough:** 
+
 ## Setup Instructions
 
 1. **Navigate to the client directory:**

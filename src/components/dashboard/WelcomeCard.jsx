@@ -31,7 +31,7 @@ export function WelcomeCard() {
         <div className="h-14 w-64 rounded-lg bg-[var(--muted)]/50 animate-pulse" />
       ) : (
         <div>
-          <h1 className="text-2.5xl font-bold tracking-tight text-[var(--foreground)] font-sans">
+          <h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)] font-sans">
             Hi, {profile?.firstName ?? "there"} 👋 Welcome to Hintro
           </h1>
           <p className="text-[var(--muted-foreground)] mt-1 text-sm font-medium">
